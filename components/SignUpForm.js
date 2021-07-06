@@ -39,9 +39,10 @@ function SignUpForm() {
         try {
            setloading(true)
            setErrorMessage(null)
-           await firebase.auth().createUserWithEmailAndPassword(email, password);
-           setloading(false)
-           setCompleted(true)
+           await firebase.auth().createUserWithEmailAndPassword(email, password).then((data)=>{
+               setloading(false)
+               setCompleted(true)
+           });
         } catch (error){
            setErrorMessage(error.message)
            setloading(false)

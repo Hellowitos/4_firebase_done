@@ -34,9 +34,11 @@ function LoginForm() {
         try {
             setloading(true)
             setErrorMessage(null)
-            const result = await firebase.auth().signInWithEmailAndPassword(email, password);
-            setloading(false)
-            setCompleted(true)
+            await firebase.auth().signInWithEmailAndPassword(email, password).then((data)=>{
+                 setloading(false)
+                 setCompleted(true)
+             });
+
         } catch (error){
             setErrorMessage(error.message)
             setloading(false)
