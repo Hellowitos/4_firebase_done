@@ -2,18 +2,16 @@
 
 <h3> Integration med Firebase</h3>
 
-1.   Start med at oprette et nyt projekt. 
-2.   Installér følgende dependencies;
-    - firebase
-    - react-native-paper
-        - Et skærmklip af package.json filen til den endelige løsning er vedlagt i bilag A.
-          Din package.json bør være ens med denne efter installeringen. 
-        - KOPIER linjen herunder til installering.
+1. Start med at oprette et nyt projekt.<br/>
+2. Installér følgende dependencies;
+-   firebase
+-   react-native-paper
+   
 
+    
+             npm install --save firebase react-native-paper
 
-        npm install --save firebase react-native-paper
-
-3. Opret nu en database i Firebase;
+3. Opret nu en firebase web app;
 - Følg dette link: https://firebase.google.com/
 - Tryk på "Get Started"
 - Tryk på "Add Project"
@@ -86,6 +84,7 @@ HINT: Brug løbende den officielle docs:<br/> https://docs.expo.io/guides/using-
 <h3>Bilag</h3>
 
 <h4>Bilag A - Package.json - Fra Endelig Løsning </h3>
+
 ![img_3.png](img_3.png)
 
 
