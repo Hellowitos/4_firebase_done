@@ -24,28 +24,19 @@ const styles = StyleSheet.create({
 function SignUpForm() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [isLoading, setloading] = useState(false)
     const [isCompleted, setCompleted] = useState(false)
     const [errorMessage, setErrorMessage] = useState(null)
 
     const renderButton = () => {
-        if (isLoading) {
-            return <ActivityIndicator />;
-        }
         return <Button onPress={() => handleSubmit()} title="Create user" />;
     };
 
     const handleSubmit = async() => {
         try {
-           setloading(true)
-           setErrorMessage(null)
            await firebase.auth().createUserWithEmailAndPassword(email, password).then((data)=>{
-               setloading(false)
-               setCompleted(true)
            });
         } catch (error){
            setErrorMessage(error.message)
-           setloading(false)
         }
 
     }

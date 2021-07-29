@@ -26,29 +26,20 @@ const styles = StyleSheet.create({
 function LoginForm() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [isLoading, setloading] = useState(false)
     const [isCompleted, setCompleted] = useState(false)
     const [errorMessage, setErrorMessage] = useState(null)
 
     const handleSubmit = async () => {
         try {
-            setloading(true)
-            setErrorMessage(null)
             await firebase.auth().signInWithEmailAndPassword(email, password).then((data)=>{
-                 setloading(false)
-                 setCompleted(true)
-             });
+            });
 
         } catch (error){
             setErrorMessage(error.message)
-            setloading(false)
         }
     }
 
     const renderButton = () => {
-        if (isLoading) {
-            return <ActivityIndicator />;
-        }
         return <Button onPress={() => handleSubmit()} title="Login" />;
     };
     if (isCompleted) {
