@@ -73,7 +73,7 @@ HINT: Brug løbende den officielle docs:<br/> https://docs.expo.io/guides/using-
 1. Vend tilbage til App.js og opret en metode, som monitorer om en bruger tilstand ændres fra inaktiv til aktiv
 - HINT: Find hjælp på dette link: https://johnwcassidy.medium.com/firebase-authentication-hooks-and-context-d0e47395f402
 - Dokumentionen på useEffect: https://reactjs.org/docs/hooks-effect.html
-2. Afslutningsvis, skal return() i app.js på baggrund af brugerens tilstand fremvise enten LoginForm & SignInForm eller ProfileScreen
+2. Afslutningsvis, skal return() i app.js, på baggrund af brugerens tilstand(logget ind eller logget ud), fremvise enten LoginForm & SignInForm eller ProfileScreen
 
 <h3> Færdig?</h3>
 
