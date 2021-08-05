@@ -4,7 +4,7 @@ import firebase from 'firebase';
 
 function ProfileScreen () {
 
-    //handleLogout håndterer log ud af en bruger.
+    //handleLogout håndterer log ud af en aktiv bruger.
     //Metoden er en prædefineret metode, som firebase stiller tilrådighed
     //Metoden er et asynkrontkald.
     const handleLogOut = async () => {
