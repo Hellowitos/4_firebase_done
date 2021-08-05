@@ -56,7 +56,7 @@ function App() {
     firebase.initializeApp(firebaseConfig);
   }
 
-  //useEffect sørger for at vi kan ekskverer sideeffekter i funktionelle konmponenter
+  //useEffect sørger for at vi kan eksekverer sideeffekter i funktionelle konmponenter
   //Sideeffekter kan være initial fetching af data fra et endpoint ved instantiering af en komponent.
 
   // læs mere om useEffect her: https://reactjs.org/docs/hooks-effect.html
