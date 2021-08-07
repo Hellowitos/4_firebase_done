@@ -1,26 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import SignUpForm from './components/SignUpForm';
 import firebase from 'firebase';
 import LoginForm from "./components/LoginForm";
 import ProfileScreen from "./components/ProfileScreen";
 import { Card } from 'react-native-paper';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingTop: '5%',
-    backgroundColor: '#ecf0f1',
-    padding: 8,
-  },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
 
 const firebaseConfig = {
   apiKey: "AIzaSyAts5zYxJljKY67teZC8XpxV-JNXNy_pzs",
@@ -32,35 +16,21 @@ const firebaseConfig = {
   measurementId: "G-1QX8B2E9H7"
 };
 
-function onAuthStateChange(callback) {
-  return firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      callback({loggedIn: true, user: user});
-    } else {
-      callback({loggedIn: false});
-    }
-  });
-}
-
-const GuestPage =
-    <View style={styles.container}>
-  <Text style={styles.paragraph}>
-    Opret eller Login med din firebase Email
-  </Text>
-  <Card>
-    <SignUpForm />
-  </Card>
-  <Card>
-    <LoginForm />
-  </Card>
-</View>;
-
-
-function App() {
+export default function App() {
 
   const [user, setUser] = useState({ loggedIn: false });
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
+  }
+
+  function onAuthStateChange(callback) {
+    return firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        callback({loggedIn: true, user: user});
+      } else {
+        callback({loggedIn: false});
+      }
+    });
   }
 
   useEffect(() => {
@@ -70,10 +40,45 @@ function App() {
     };
   }, []);
 
-  return user.loggedIn ? <ProfileScreen /> : GuestPage ;
+
+  const GuestPage = () => {
+    return(
+        <View style={styles.container}>
+          <Text style={styles.paragraph}>
+            Opret eller Login med din firebase Email
+          </Text>
+
+          <Card style={{padding:20}}>
+            <SignUpForm />
+          </Card>
+
+          <Card style={{padding:20}}>
+            <LoginForm />
+          </Card>
+
+        </View>
+    )
+  }
+
+
+  return user.loggedIn ? <ProfileScreen /> : <GuestPage/> ;
 
 }
 
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: '5%',
+    backgroundColor: 'transparent',
+    padding: 20,
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+});
 
-export default App
