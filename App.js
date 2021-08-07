@@ -27,7 +27,6 @@ export default function App() {
     firebase.initializeApp(firebaseConfig);
   }
 
-
 //onAuthstatechanged er en prædefineret metode, forsynet af firebase, som konstant observerer brugerens status (logget ind vs logget ud)
 //Pba. brugerens status foretages et callback i form af setUSer metoden, som håndterer user-state variablens status.
   function onAuthStateChange(callback) {
@@ -68,11 +67,9 @@ export default function App() {
     )
   }
 
-
   return user.loggedIn ? <ProfileScreen /> : <GuestPage/> ;
 
 }
-
 
 const styles = StyleSheet.create({
   container: {
