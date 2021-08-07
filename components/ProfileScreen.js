@@ -3,13 +3,23 @@ import {View, Text, Button, StyleSheet} from 'react-native';
 import firebase from 'firebase';
 
 function ProfileScreen () {
+
+    //handleLogout håndterer log ud af en aktiv bruger.
+    //Metoden er en prædefineret metode, som firebase stiller tilrådighed
+    //Metoden er et asynkrontkald.
     const handleLogOut = async () => {
         await firebase.auth().signOut();
     };
 
+   //Hvis der af en eller anden grund ikke skulle være muligt at fremfinde den aktive bruger,
+   //skal der udprintes en besked om dette igennem en tekstkomponent
     if (!firebase.auth().currentUser) {
         return <View><Text>Not found</Text></View>;
     }
+
+    //I return() udnyttes en prædefineret metode, som firebase stiller til rådighed.
+    // Metoden returnerer mailadressen af den aktive bruger.
+    // Mailadressen udskrives ved brug af en tekstkomponent.
     return (
         <View style={styles.container} >
             <Text>Current user: {firebase.auth().currentUser.email}</Text>
@@ -19,6 +29,7 @@ function ProfileScreen () {
 
 }
 
+//Lokal styling til brug i ProfileScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -29,4 +40,5 @@ const styles = StyleSheet.create({
     },
 });
 
+//Eksport af Loginform, således denne kan importeres og benyttes i andre komponenter
 export default ProfileScreen

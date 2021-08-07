@@ -6,6 +6,7 @@ import LoginForm from "./components/LoginForm";
 import ProfileScreen from "./components/ProfileScreen";
 import { Card } from 'react-native-paper';
 
+// Herunder foregår konfiguration til firebase. .
 const firebaseConfig = {
   apiKey: "AIzaSyAts5zYxJljKY67teZC8XpxV-JNXNy_pzs",
   authDomain: "oevelse5updated.firebaseapp.com",
@@ -18,11 +19,17 @@ const firebaseConfig = {
 
 export default function App() {
 
+//Her oprettes bruger state variblen
   const [user, setUser] = useState({ loggedIn: false });
+
+  //Koden sikrer at kun én Firebase initieres under brug af appen.
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   }
 
+
+//onAuthstatechanged er en prædefineret metode, forsynet af firebase, som konstant observerer brugerens status (logget ind vs logget ud)
+//Pba. brugerens status foretages et callback i form af setUSer metoden, som håndterer user-state variablens status.
   function onAuthStateChange(callback) {
     return firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -33,6 +40,7 @@ export default function App() {
     });
   }
 
+  //Heri aktiverer vi vores listener i form af onAuthStateChanged, så vi dynamisk observerer om brugeren er aktiv eller ej.
   useEffect(() => {
     const unsubscribe = onAuthStateChange(setUser);
     return () => {
@@ -40,7 +48,7 @@ export default function App() {
     };
   }, []);
 
-
+//Her oprettes gæstekomponentsindhold, der udgøres af sign-up og login siderne
   const GuestPage = () => {
     return(
         <View style={styles.container}>
